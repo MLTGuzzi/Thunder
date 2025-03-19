@@ -6,6 +6,10 @@
   padding: 10px;
 }
 
+.navbar--title {
+  margin-left: 10px;
+}
+
 .navbar-menu {
   list-style-type: none;
   margin: 0;
