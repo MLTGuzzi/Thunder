@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #d6d4d4;
   padding: 10px;
 }
 
@@ -60,6 +60,32 @@
 }
 
 .navbar-logo {
+  height: 40px;
   margin-left: 10px;
-  height: 60px; /* Adjust the height as needed */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+.menu-button {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .menu-button {
+    display: block;
+  }
+
+  mat-toolbar-row.navbar {
+    display: none;
+  }
 }

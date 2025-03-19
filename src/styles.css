@@ -69,3 +69,6 @@ body {
   margin-left: 10px;
   height: 60px; /* Adjust the height as needed */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
