@@ -1,0 +1,18 @@
+<!-- filepath: src/app/components/menu/menu.component.html -->
+<nav class="navbar">
+  <ul class="navbar-menu">
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/about">About</a></li>
+  </ul>
+  <div class="navbar-right">
+    <ul class="navbar-auth">
+      <li *ngIf="!(auth.isAuthenticated$ | async)">
+        <button (click)="auth.loginWithRedirect()">Login</button>
+      </li>
+      <li *ngIf="auth.isAuthenticated$ | async">
+        <button (click)="auth.logout({ logoutParams: { returnTo: 'http://localhost:4200' } })">Logout</button>
+      </li>
+    </ul>
+    <img src="/TAS_Logo_150.jpg" alt="Logo" class="navbar-logo">
+  </div>
+</nav>
