@@ -25,4 +25,8 @@ import { MatListModule } from '@angular/material/list';
 })
 export class MenuComponent {
   constructor(public auth: AuthService) {}
+
+  public loginWithRedirect(): void {
+    this.auth.loginWithRedirect();
+  }
 }

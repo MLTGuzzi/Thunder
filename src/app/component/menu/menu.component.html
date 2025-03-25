@@ -14,7 +14,7 @@
       <a mat-list-item routerLink="/" (click)="sidenav.close()">Home</a>
       <a mat-list-item routerLink="/about" (click)="sidenav.close()">About</a>
       <ng-container *ngIf="!(auth.isAuthenticated$ | async); else loggedIn">
-        <a mat-list-item (click)="auth.loginWithRedirect(); sidenav.close()">Login</a>
+        <a mat-list-item (click)="this.loginWithRedirect(); sidenav.close()">Login</a>
       </ng-container>
       <ng-template #loggedIn>
         <a mat-list-item (click)="auth.logout({ logoutParams: { returnTo: 'http://localhost:4200' } }); sidenav.close()">Logout</a>
@@ -30,7 +30,9 @@
       <span class="spacer"></span>
       <div>
         <ng-container *ngIf="!(auth.isAuthenticated$ | async); else loggedIn">
-          <a mat-button (click)="auth.loginWithRedirect()">Login</a>
+          <a mat-button (click)="this.loginWithRedirect()">Login</a>
+          <!-- remove the next line after debugging -->
+          <a mat-button (click)="auth.logout({ logoutParams: { returnTo: 'http://localhost:4200' } })">Logout</a>
         </ng-container>
         <ng-template #loggedIn>
           <a mat-button (click)="auth.logout({ logoutParams: { returnTo: 'http://localhost:4200' } })">Logout</a>
