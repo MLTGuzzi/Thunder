@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
       if (claims) {
         const token = claims.__raw;
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        this.http.get('http://localhost:8080/api/tutorials', { headers }).subscribe(
+        this.http.get('http://localhost:8080/api/v1/tutorials', { headers }).subscribe(
           (response) => {
             this.data = response;
           },
