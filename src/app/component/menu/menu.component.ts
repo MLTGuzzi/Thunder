@@ -26,6 +26,19 @@ import { MatListModule } from '@angular/material/list';
 export class MenuComponent {
   constructor(public auth: AuthService) {}
 
+/*
+    this.auth.idTokenClaims$.subscribe((claims) => {
+      let token = '';
+      if (claims) {
+        token = claims.__raw;
+      }
+      let retval = new HttpHeaders();
+      retval = retval.append('Authorization', `Bearer ${token}`);
+      this.headers = retval;
+    });
+*/
+
+
   public loginWithRedirect(): void {
     this.auth.loginWithRedirect();
   }

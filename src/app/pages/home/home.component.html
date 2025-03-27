@@ -1,3 +1,12 @@
-<div *ngIf="data">
-    <pre>{{ data | json }}</pre>
+<div *ngIf="tutorialsQuery?.data()">
+  <pre>Data:{{ tutorialsQuery?.data() | json }}</pre>
+</div>
+<div *ngIf="tutorialsQuery?.error()">
+    <pre>Error:</pre>
+    <pre>{{ tutorialsQuery?.error()?.cause}}</pre>
+    <pre>{{ tutorialsQuery?.error()?.message }}</pre>
+    <pre>{{ tutorialsQuery?.error()?.stack}}</pre>
+</div>
+<div *ngIf="tutorialsQuery?.isFetching()">
+  <pre>Loading...</pre>
 </div>
