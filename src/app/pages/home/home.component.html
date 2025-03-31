@@ -1,12 +1,10 @@
-<div *ngIf="tutorialsQuery?.data()">
-  <pre>Data:{{ tutorialsQuery?.data() | json }}</pre>
-</div>
-<div *ngIf="tutorialsQuery?.error()">
-    <pre>Error:</pre>
-    <pre>{{ tutorialsQuery?.error()?.cause}}</pre>
-    <pre>{{ tutorialsQuery?.error()?.message }}</pre>
-    <pre>{{ tutorialsQuery?.error()?.stack}}</pre>
-</div>
-<div *ngIf="tutorialsQuery?.isFetching()">
+<div *ngIf="arlaQuery?.isFetching()">
   <pre>Loading...</pre>
 </div>
+<div *ngIf="arlaQuery?.error()">
+  <pre>{{ arlaQuery?.error()?.message }}</pre>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
