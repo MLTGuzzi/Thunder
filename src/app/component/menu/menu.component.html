@@ -5,13 +5,17 @@
   </button>
   <span class="navbar--title">Thunder</span>
   <span class="spacer"></span>
+  <span *ngIf="auth.isAuthenticated$ | async">
+    <span class="navbar--user">{{ (auth.user$ | async)?.name }}</span>  
+  </span>
+  <span class="spacer"></span>
   <img src="/TAS_Logo_150.jpg" alt="Logo" class="navbar-logo">
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="over" class="sidenav">
     <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)="sidenav.close()">Home</a>
+      <a mat-list-item *ngIf="(auth.isAuthenticated$ | async)" routerLink="/dashboard" (click)="sidenav.close()">Dashboard</a>
       <a mat-list-item routerLink="/about" (click)="sidenav.close()">About</a>
       <ng-container *ngIf="!(auth.isAuthenticated$ | async); else loggedIn">
         <a mat-list-item (click)="this.loginWithRedirect(); sidenav.close()">Login</a>
@@ -24,15 +28,13 @@
   <mat-sidenav-content>
     <mat-toolbar-row class="navbar">
       <nav>
-        <a mat-button routerLink="/">Home</a>
+        <a mat-button *ngIf="(auth.isAuthenticated$ | async)" routerLink="/dashboard">Dashboard</a>
         <a mat-button routerLink="/about">About</a>
       </nav>
       <span class="spacer"></span>
       <div>
         <ng-container *ngIf="!(auth.isAuthenticated$ | async); else loggedIn">
           <a mat-button (click)="this.loginWithRedirect()">Login</a>
-          <!-- remove the next line after debugging -->
-          <a mat-button (click)="auth.logout({ logoutParams: { returnTo: 'http://localhost:4200' } })">Logout</a>
         </ng-container>
         <ng-template #loggedIn>
           <a mat-button (click)="auth.logout({ logoutParams: { returnTo: 'http://localhost:4200' } })">Logout</a>

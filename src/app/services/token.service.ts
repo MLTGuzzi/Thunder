@@ -13,8 +13,14 @@ export class TokenService {
 
   async retrieveAccessToken(): Promise<void> {
     try {
-      const token = await lastValueFrom(this.auth.getAccessTokenSilently());
-      this.accessTokenSubject.next(token);
+      const isAuthenticated = await lastValueFrom(this.auth.isAuthenticated$); // Resolve the observable
+      if (isAuthenticated) {
+        const token = await lastValueFrom(this.auth.getAccessTokenSilently());
+        this.accessTokenSubject.next(token);
+      } else {
+        console.warn('User is not authenticated. Cannot retrieve access token.');
+        this.accessTokenSubject.next(null);
+      }
     } catch (error) {
       console.error('Error retrieving access token:', error);
       this.accessTokenSubject.next(null);

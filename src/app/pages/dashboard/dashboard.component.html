@@ -1,0 +1,19 @@
+<div class="dashboard-container">
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #sidenav mode="over" class="sidenav">
+          <mat-nav-list>
+              <a mat-button routerLink="/check-in">Check-In</a> <!-- Sub-item link -->
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <mat-toolbar-row>
+                <nav>
+                <a mat-button routerLink="/check-in">Check-In</a>
+              </nav>
+            </mat-toolbar-row>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+  <router-outlet></router-outlet> <!-- Placeholder for child routes -->
+</div>
+
