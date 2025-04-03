@@ -4,7 +4,7 @@
 <div *ngIf="arlaQuery?.error()">
   <pre>{{ arlaQuery?.error()?.message }}</pre>
 </div>
-<form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+<form *ngIf="fields.length > 0" [formGroup]="form" (ngSubmit)="onSubmit(model)">
   <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>

@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { TokenService } from './services/token.service';
+import { FormsService } from './services/forms.service';
+import { FormlyButtonComponent } from './component/FormlyButtonComponent/FormlyButton.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,6 @@ import { TokenService } from './services/token.service';
     MenuComponent, 
     RouterOutlet,
     ReactiveFormsModule,
-    FormlyModule,
     FormlyMaterialModule
   ],
   templateUrl: './app.component.html',
@@ -22,7 +23,7 @@ import { TokenService } from './services/token.service';
 export class AppComponent {
   title = 'Thunder';
 
-  constructor(private tokenService: TokenService) {
+  constructor(private tokenService: TokenService, private formsService: FormsService) {
     tokenService.getAccessToken();
   }
 }
