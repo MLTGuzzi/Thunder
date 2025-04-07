@@ -1,7 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 body {
   font-family: Tahoma, sans-serif;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to the next row */
+  gap: 5px; /* Adds spacing between items */
+}
+
+.mat-form-field {
+  flex: 1 1 calc(50% - 5px); /* Each field takes 50% width minus the gap */
+  min-width: 190px; /* Ensures a minimum width */
+}
+
+.mat-form-field-button {
+  margin-top: 12px; /* Adds space above the field */
 }
 
 .navbar {

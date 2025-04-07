@@ -10,12 +10,13 @@ import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormsService } from '../../services/forms.service';
 import { Subject } from 'rxjs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'check-in',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormlyModule, FormlyMaterialModule],
+  imports: [CommonModule, ReactiveFormsModule, FormlyModule, FormlyMaterialModule, FlexLayoutModule],
   templateUrl: './check-in.component.html',
   styleUrls: ['./check-in.component.css']
 })
