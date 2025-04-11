@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, inject, OnInit, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, Inject, inject, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateQueryResult, injectQuery } from '@tanstack/angular-query-experimental';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -46,7 +46,13 @@ export class CheckInComponent implements OnInit {
     this.form.reset({});
   }
 
-  constructor(public http: HttpClient, public auth: AuthService, private tokenService: TokenService, private formsService: FormsService) {
+  constructor(
+      public http: HttpClient, 
+      public auth: AuthService, 
+      private tokenService: TokenService, 
+      private formsService: FormsService,
+      @Inject('ENV') private env: any // Inject the environment variables
+    ) {
 
     // Initialize the form fields from the API
     this.fields = this.formsService.getCheckinForm() || [];
@@ -118,7 +124,7 @@ export class CheckInComponent implements OnInit {
   // Function to fetch aircraft data from the ARLA API
   private getArlaAircraft(tailNumber: string): Promise<ArlaAircraftResponse> {
     const options = { headers: this.headers };
-    return lastValueFrom(this.http.get<ArlaAircraftResponse>(`http://localhost:8080/api/v1/arla/aircraft/${tailNumber}`, options));
+    return lastValueFrom(this.http.get<ArlaAircraftResponse>(`${this.env.API_BASE_URL}/arla/aircraft/${tailNumber}`, options));
   }
 
 }

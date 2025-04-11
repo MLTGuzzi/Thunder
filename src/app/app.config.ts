@@ -3,9 +3,9 @@ import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection } from '
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, HTTP_INTERCEPTORS, withInterceptors, HttpClientModule } from '@angular/common/http';
 import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
-import { provideAuth0, AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { provideAuth0, AuthHttpInterceptor, AuthClientConfig } from '@auth0/auth0-angular';
 import { routes } from './app.routes';
-import { authConfig } from './auth.config';
+import { AUTH_CONFIG, getAuthConfig } from './auth.config';
 import { FormsService } from './services/forms.service';
 import { importProvidersFrom } from '@angular/core';
 
@@ -32,7 +32,11 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authHttpInterceptorFn])),
-    provideAuth0(authConfig),
+    {
+      provide: AUTH_CONFIG,
+      useFactory: (env: any) => getAuthConfig(env),
+      deps: ['ENV'] // Inject the ENV token
+    },
     provideTanStackQuery(new QueryClient()),
     FormsService, // Register FormsService as a provider
     {

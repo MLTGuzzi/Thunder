@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { BehaviorSubject, lastValueFrom } from 'rxjs';
 import { TokenService } from './token.service';
@@ -14,7 +14,12 @@ export class FormsService {
   private events = new BehaviorSubject<string>('no event');
   public events$ = this.events.asObservable();
 
-  constructor(private auth: AuthService, private tokenService: TokenService, private http: HttpClient) {}
+  constructor(
+    private auth: AuthService,
+    private tokenService: TokenService,
+    private http: HttpClient,
+    @Inject('ENV') private env: any // Inject the environment variables
+  ) {}
 
   /**
    * Initializes the retrieval of the check-in form fields.
@@ -27,7 +32,8 @@ export class FormsService {
           if (token) {
             const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
             const options = { headers: headers };
-            this.http.get<string>(`http://localhost:8080/api/v1/forms/checkin`, options).subscribe({
+            const apiUrl = `${this.env.API_BASE_URL}/forms/checkin`; // Use the .env value
+            this.http.get<string>(apiUrl, options).subscribe({
               next: (response) => {
                 // Parse the response to create FormlyFieldConfig objects
                 const fields: FormlyFieldConfig[] = JSON.parse(response);

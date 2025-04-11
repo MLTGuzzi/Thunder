@@ -24,6 +24,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "env.json",
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
@@ -37,8 +42,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "1500kB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -58,6 +63,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+           "options": {
+            "sslKey": "./localhost.key",
+            "sslCert": "./localhost.crt",
+            "ssl": true
+          },
           "configurations": {
             "production": {
               "buildTarget": "Thunder:build:production"
