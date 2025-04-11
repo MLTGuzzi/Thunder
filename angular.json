@@ -57,6 +57,11 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "devhost": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -74,6 +79,9 @@
             },
             "development": {
               "buildTarget": "Thunder:build:development"
+            },
+            "devhost": {
+              "buildTarget": "Thunder:build:devhost"
             }
           },
           "defaultConfiguration": "development"

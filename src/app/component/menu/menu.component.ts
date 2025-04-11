@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -24,7 +24,10 @@ import { MatListModule } from '@angular/material/list';
   ]
 })
 export class MenuComponent {
-  constructor(public auth: AuthService) {}
+  constructor(
+    public auth: AuthService,
+    @Inject('ENV') public env: any // Inject the environment variables
+  ) {}
 
 /*
     this.auth.idTokenClaims$.subscribe((claims) => {
@@ -38,6 +41,13 @@ export class MenuComponent {
     });
 */
 
+  public logout(): void {
+    this.auth.logout({
+      logoutParams: {
+        returnTo: this.env.REDIRECT_URI || 'https://localhost:4200', // Default to localhost if not set
+      }
+    });
+  }
 
   public loginWithRedirect(): void {
     this.auth.loginWithRedirect();

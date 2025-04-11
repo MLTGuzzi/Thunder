@@ -6,6 +6,7 @@ import { AUTH_CONFIG, getAuthConfig } from './app/auth.config';
 import { provideAuth0 } from '@auth0/auth0-angular';
 
 envLoader.useFactory().then((env) => {
+  console.log("Environment variables loaded:", env);
   const updatedAppConfig = {
     ...appConfig,
     providers: [

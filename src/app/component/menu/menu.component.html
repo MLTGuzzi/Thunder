@@ -21,7 +21,7 @@
         <a mat-list-item (click)="this.loginWithRedirect(); sidenav.close()">Login</a>
       </ng-container>
       <ng-template #loggedIn>
-        <a mat-list-item (click)="auth.logout({ logoutParams: { returnTo: 'http://localhost:4200' } }); sidenav.close()">Logout</a>
+        <a mat-list-item (click)="this.logout(); sidenav.close()">Logout</a>
       </ng-template>
     </mat-nav-list>
   </mat-sidenav>
@@ -37,7 +37,7 @@
           <a mat-button (click)="this.loginWithRedirect()">Login</a>
         </ng-container>
         <ng-template #loggedIn>
-          <a mat-button (click)="auth.logout({ logoutParams: { returnTo: 'http://localhost:4200' } })">Logout</a>
+          <a mat-button (click)="this.logout()">Logout</a>
         </ng-template>
       </div>
     </mat-toolbar-row>
