@@ -12,6 +12,13 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+This particular application has had it's package.json file modified to support some addtional features.  One such feature is the ability to load an alternate set of configuration values and launch the application on an alternate address.
+
+```bash
+npm run start-devhost
+```
+will build the configuration for launching the application on https://192.168.1.20:4200, and then start the server.  This is very handy for testing the application on devices such as phones, which are on the same local network.  Don't forget to hit the API address with the device and accept the self-signed certificate when using this feature.  If the site doesn't come up at this address, check the address of the laptop to be sure it hasn't changed.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
@@ -53,6 +60,10 @@ ng e2e
 ```
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Troubleshooting
+
+If the web page goes blank after login, especially in Firefox or Safari, it is probably a CORS error brought on by the use of a self-signed certificate.  This should only occur in a development environment, and can be temporarily fixed by visiting the URL of the API in the affected browser (https://localhost:8443 or https://192.168.1.20:8443), and accepting the insecure certificate.  This will fix the problem until that particular browser decides it can't trust the certificate, and you will have to do it again.
 
 ## Additional Resources
 

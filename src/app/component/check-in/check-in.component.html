@@ -1,10 +1,5 @@
-<div *ngIf="arlaQuery?.isFetching()">
-  <pre>Loading...</pre>
-</div>
-<div *ngIf="arlaQuery?.error()">
-  <pre>{{ arlaQuery?.error()?.message }}</pre>
-</div>
 <form *ngIf="fields.length > 0" [formGroup]="form" (ngSubmit)="onSubmit(model)">
   <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default">Accept</button>
+  <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
 </form>

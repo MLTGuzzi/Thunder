@@ -6,6 +6,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { TokenService } from './services/token.service';
 import { FormsService } from './services/forms.service';
+import { AircraftService } from './services/aircraft.service';
 import { FormlyButtonComponent } from './component/FormlyButtonComponent/FormlyButton.component';
 
 @Component({
@@ -23,7 +24,7 @@ import { FormlyButtonComponent } from './component/FormlyButtonComponent/FormlyB
 export class AppComponent {
   title = 'Thunder';
 
-  constructor(private tokenService: TokenService, private formsService: FormsService) {
+  constructor(private tokenService: TokenService, private formsService: FormsService, private aircraftService: AircraftService) {
     tokenService.getAccessToken();
   }
 }

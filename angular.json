@@ -68,7 +68,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-           "options": {
+          "options": {
             "sslKey": "./localhost.key",
             "sslCert": "./localhost.crt",
             "ssl": true
@@ -84,7 +84,7 @@
               "buildTarget": "Thunder:build:devhost"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
