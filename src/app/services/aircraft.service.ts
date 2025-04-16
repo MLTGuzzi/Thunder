@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { TokenService } from './token.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { switchMap, tap, catchError } from 'rxjs/operators';
+import { v4 as uuidv4 } from 'uuid'; // Import UUID library for generating unique IDs
 
 @Injectable({
   providedIn: 'root'
@@ -99,6 +100,38 @@ export class AircraftService {
         }
       })
     );    
+  }
+
+  public updateAircraft(aircraft: Aircraft): Observable<Aircraft> {
+    return this.tokenService.getAccessToken().pipe(
+      switchMap((token) => {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+        return this.http.put<Aircraft>(`${this.env.API_BASE_URL}/aircraft/${aircraft.id}`, aircraft, { headers });
+      }),
+      tap((updatedAircraft) => {
+        this.aircraftSubject.next(updatedAircraft);
+      }),
+      catchError((error) => {
+        console.error('Error updating aircraft:', error);
+        return new BehaviorSubject<Aircraft>(aircraft).asObservable(); // Return the original aircraft on error
+      })
+    );
+  }
+
+  public createAircraft(aircraft: Aircraft): Observable<Aircraft> {
+    return this.tokenService.getAccessToken().pipe(
+      switchMap((token) => {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+        return this.http.post<Aircraft>(`${this.env.API_BASE_URL}/aircraft`, aircraft, { headers });
+      }),
+      tap((createdAircraft) => {
+        this.aircraftSubject.next(createdAircraft);
+      }),
+      catchError((error) => {
+        console.error('Error creating aircraft:', error);
+        return new BehaviorSubject<Aircraft>(aircraft).asObservable(); // Return the original aircraft on error
+      })
+    );
   }
 }
 

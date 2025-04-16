@@ -3,7 +3,7 @@
   <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="navbar--title">Thunder</span>
+  <span class="navbar--title">Twisty Wrenches</span>
   <span class="spacer"></span>
   <span *ngIf="auth.isAuthenticated$ | async">
     <span class="navbar--user">{{ (auth.user$ | async)?.name }}</span>  
