@@ -63,7 +63,7 @@ export class CheckInComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((event) => {
         if (event === 'searchButtonClicked') {
-          // ToDo - Double check to see what make a valid tail number.  Can it be
+          // ToDo - Double check to see what makes a valid tail number.  Can it be
           // less than 3 characters?
           if(this.model.tailNumber && this.model.tailNumber.length > 3) {
           this.onSearchClick();
@@ -79,8 +79,8 @@ export class CheckInComponent implements OnInit {
   }
 
   onSubmit(model: any) {
-    this.form.reset({});
     this.onSubmitCallback(this.model); // Call the callback with the model
+    this.form.reset({});
   }
 
   onSearchClick(): void {

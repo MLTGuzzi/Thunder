@@ -1,0 +1,6 @@
+/* Hide the description column on narrow screens */
+@media (max-width: 430px) {
+    .hide-on-narrow {
+      display: none;
+    }
+  }

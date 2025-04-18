@@ -11,6 +11,11 @@
   font-size: .75em;
 }
 
+.navbar--title div {
+  text-align: center;
+  margin: -10px 0 -10px 0;
+}
+
 .navbar-menu {
   list-style-type: none;
   margin: 0;

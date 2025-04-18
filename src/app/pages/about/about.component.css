@@ -5,3 +5,16 @@
 .about-footer {
   text-align: center; /* Center the footer content */
 }
+
+.logo-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logo-container img {
+  background-color: transparent; /* Ensure the background is transparent */
+  display: block;
+  margin: 0 auto; /* Center the image */
+  max-width: 300px;
+  height: auto;
+}

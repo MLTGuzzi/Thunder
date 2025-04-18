@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { TokenService } from './token.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { switchMap, tap, catchError } from 'rxjs/operators';
-import { v4 as uuidv4 } from 'uuid'; // Import UUID library for generating unique IDs
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +59,16 @@ export class AircraftService {
     return this.getByTailNumber(tailNumber).pipe(
       switchMap((aircraft) => {
         if (aircraft) {
+          // Add a blank work order to the aircraft
+          aircraft.workOrders = [
+            {
+              id: '',
+              workOrderNumber: '',
+              description: '',
+              status: 'New',
+              workType: 'Repair'
+            }
+          ];
           this.aircraftSubject.next(aircraft);
           return this.aircraft$;
         } else {
@@ -88,7 +97,15 @@ export class AircraftService {
                       zipCode: arlaAircraft.ownerZip
                     }
                   ],
-                  workOrders: []
+                  workOrders: [
+                    {
+                      id: '',
+                      workOrderNumber: '',
+                      description: '',
+                      status: 'New',
+                      workType: 'Repair'
+                    }
+                  ]
                 };
                 this.aircraftSubject.next(mappedAircraft);
                 return this.aircraft$;
@@ -164,6 +181,7 @@ export interface WorkOrder {
     workOrderNumber: string;
     description: string;
     status: string;
+    workType: string;
 }
 
 // Define the interface for the response from the ARLA API

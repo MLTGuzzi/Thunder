@@ -3,13 +3,13 @@
   <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="navbar--title">Twisty Wrenches</span>
+  <span class="navbar--title"><div>Twisty</div><div>Wrenches</div></span>
   <span class="spacer"></span>
   <span *ngIf="auth.isAuthenticated$ | async">
     <span class="navbar--user">{{ (auth.user$ | async)?.name }}</span>  
   </span>
   <span class="spacer"></span>
-  <img src="/TAS_Logo_150.jpg" alt="Logo" class="navbar-logo">
+  <img src="/TW_Logo_Transparent_40.png" alt="Logo" class="navbar-logo">
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">

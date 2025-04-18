@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
-
+  public currentYear: number = new Date().getFullYear(); // Dynamically set the current year 
 }
